@@ -1,5 +1,5 @@
 import mongodb from "mongodb"
-const ObjectId = mongodb.ObjectId
+import {ObjectId} from "mongodb"
 
 let reviews
 
@@ -31,9 +31,9 @@ export default class ReviewsDao{
         }
     }
 
-    static async getReview(reviewId) {
+    static async getReview(id) {
         try{
-            return await reviews.findOne({ _id: ObjectId(reviewId) })
+            return await reviews.findOne({ _id: new ObjectId(String(id)) })
         }catch(e){
             console.error(`Unable to get review: ${e}`)
             return { error: e }
@@ -43,7 +43,7 @@ export default class ReviewsDao{
     static async updateReview(reviewId, user, review) {
         try{
             const updateResponse = await reviews.updateOne(
-           { _id: ObjectId(reviewId) },
+           { _id: new ObjectId(String(reviewId)) },
            { $set: { user: user, review: review } }
       )
         return updateResponse
@@ -56,7 +56,7 @@ export default class ReviewsDao{
     static async deleteReview(reviewId){
         try{
             const deleteResponse = await reviews.deleteOne({
-            _id: ObjectId(reviewId),
+            _id: new ObjectId(String(reviewId)),
       })
         return deleteResponse
         }catch(e){
