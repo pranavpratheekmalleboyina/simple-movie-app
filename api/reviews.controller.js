@@ -21,11 +21,9 @@ export default class ReviewsController{
             let id = req.params.id || {}
             let review = await ReviewsDAO.getReview(id)
             if (!review) {
-                res.status(404).json({ error: "Not found" })
-                return
-      }
-            res.json(review)
-            res.json({ status: "success" })
+                return res.status(404).json({ error: "Not found" })
+            }
+            return res.json(review)
         }catch(e){
             console.log(`api, ${e}`)
             res.status(500).json({ error: e.message })
@@ -46,7 +44,7 @@ export default class ReviewsController{
             )
             var { error } = reviewResponse
             if (error) {
-                res.status(400).json({ error })
+                return res.status(400).json({ error })
             }
 
             if (reviewResponse.modifiedCount === 0) {
@@ -54,7 +52,7 @@ export default class ReviewsController{
                 "unable to update review",
             )
            }
-            res.json({ status: "success" })
+            return res.json({ status: "success" })
 
         }catch(e){
              console.log(`api, ${e}`)
@@ -67,21 +65,20 @@ export default class ReviewsController{
         try{
             const reviewId = req.params.id
             const reviewResponse = await ReviewsDAO.deleteReview(reviewId)
-            res.json({ status: "success" })
+            return res.json({ status: "success" })
         }catch(e){
             res.status(500).json({ error: e.message })
         }
     }
 
-    static async apiGetReviewsById(req, res, next) {
+    static async apiGetReviewsByMovieId(req, res, next) {
         try{
             let id = req.params.id || {}
             let reviews = await ReviewsDAO.getReviewsByMovieId(id)
             if(!reviews){
-                res.status(404).json({ error: "Not found" })
-                return
+                return res.status(404).json({ error: "Not found" })
             }
-
+            return res.status(200).json(reviews)
         }catch(e){
             res.status(500).json({ error: e.message })
         }
