@@ -1,6 +1,6 @@
 import app from "./server.js"
 import mongodb from "mongodb"
-//import ReviewsDAO from "./dao/reviewsDAO.js"
+import ReviewsDAO from "./dao/reviewsDao.js"
 import dotenv from "dotenv"
 dotenv.config() //in order to load the .env file 
 
@@ -23,7 +23,7 @@ MongoClient.connect(
   })
   .then(
     async client => {
-    //await ReviewsDAO.injectDB(client)
+    await ReviewsDAO.injectDB(client)
     console.log(`Connected to the DB!`)
     app.listen(port, () => {
       console.log(`listening on port ${port}`)
