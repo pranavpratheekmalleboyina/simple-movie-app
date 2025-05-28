@@ -10,7 +10,7 @@ export default class ReviewsDao{
             return
         }
         try{
-            reviews = await conn.db("reviews").collection("reviews")
+            reviews = await conn.db("movies").collection("reviews")
         }catch(e){
             console.error(`Unable to establish collection handles in userDAO: ${e}`)
     }
