@@ -2,12 +2,21 @@
   box-sizing: border-box;
 }
 
+#homeButton{
+  font-size: 12px;
+}
+
+#reviewButton,#saveButton,#editButton,#deleteButton{
+  font-size: 14px;
+  color:crimson;
+}
+
 body {
   background-color: #131720;
   font-family: sans-serif;
 }
 
-h3 {
+h2,h3,p{
   color: white;
 }
 
@@ -67,4 +76,15 @@ input {
   padding: 15px;
   text-align: center;
   background-color: #151f30;
+}
+
+.card input{
+  background-color: white;
+  color:#151f30;
+}
+
+.card textarea{
+  background-color: white;
+  color:#151f30;
+  width: 100%;
 }
