@@ -28,7 +28,7 @@ returnMovies(APILINK)
         const title = document.createElement('h3');
         title.setAttribute('id', 'title');
   
-        title.innerHTML = `${element.title}<br><a href="movie.html?id=${element.id}&title=${element.title}"></a>`;
+        title.innerHTML = `${element.title}<br><a id="reviewButton" href="movie.html?id=${element.id}&title=${element.title}">VIEW REVIEWS</a>`;
         image.src = IMG_PATH + element.poster_path;
         
         div_card.append(image);
